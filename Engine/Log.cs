@@ -4,14 +4,14 @@
     {
         public static void Normal(string msg)
         {
-            Console.ForegroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine($"[MSG] - {msg}");
             Console.ForegroundColor = ConsoleColor.White;
         }
 
         public static void Info(string msg)
         {
-            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"[INFO] - {msg}");
             Console.ForegroundColor = ConsoleColor.White;
         }

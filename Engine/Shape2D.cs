@@ -13,13 +13,13 @@
             Tag = tag;
 
             Log.Info($"[SHAPE2D]({Tag}) - has been registered");
-            ExpressedEngine.RegisterShape(this);
+            GameEngineBase.RegisterShape(this);
         }
 
         public void DestroySelf()
         {
             Log.Info($"[SHAPE2D]({Tag}) - has been destroyed");
-            ExpressedEngine.UnRegisterShape(this);
+            GameEngineBase.UnRegisterShape(this);
         }
     }
 }

@@ -8,9 +8,12 @@
         }
     }
 
-    public abstract class ExpressedEngine
+    public abstract class GameEngineBase
     {
         public Color BackgroundColor { get; set; } = Color.White;
+        public Vector2 CameraPosition = Vector2.Zero();
+        public float CameraAngle = 0f;
+
         private static List<Shape2D> Shapes { get; set; } = new();
         private static List<Sprite2D> Sprites { get; set; } = new();
 
@@ -19,7 +22,7 @@
         private readonly Canvas? _window = null;
         private readonly Thread? _gameLoopThread = null;
 
-        public ExpressedEngine(Vector2 screenSize, string title)
+        public GameEngineBase(Vector2 screenSize, string title)
         {
             Log.Info("Game is starting..");
 
@@ -30,17 +33,30 @@
             _window.Size = new Size((int)_screenSize.X, (int)_screenSize.Y);
             _window.Text = _title;
             _window.Paint += Renderer!;
-
+            _window.KeyDown += Window_KeyDown;
+            _window.KeyUp += Window_KeyUp;
             _gameLoopThread = new(GameLoop);
             _gameLoopThread.Start();
 
             Application.Run(_window);
         }
 
+        private void Window_KeyDown(object? sender, KeyEventArgs e)
+        {
+            GetKeyDown(e);
+        }
+
+        private void Window_KeyUp(object? sender, KeyEventArgs e)
+        {
+            GetKeyUp(e);
+        }
+
         public abstract void OnLoad();
         public abstract void Initialize();
         public abstract void Update();
         public abstract void Draw();
+        public abstract void GetKeyDown(KeyEventArgs e);
+        public abstract void GetKeyUp(KeyEventArgs e);
 
         public static void RegisterShape(Shape2D shape) => Shapes.Add(shape);
         public static void UnRegisterShape(Shape2D shape) => Shapes.Remove(shape);
@@ -75,6 +91,9 @@
             Graphics g = e.Graphics;
             g.Clear(BackgroundColor);
 
+            g.TranslateTransform(CameraPosition.X, CameraPosition.Y);
+            g.RotateTransform(CameraAngle);
+
             foreach (var shape in Shapes)
             {
                 g.FillRectangle(new SolidBrush(Color.Red), shape.Position.X, shape.Position.Y, shape.Scale.X, shape.Scale.Y);
@@ -84,6 +103,7 @@
             {
                 g.DrawImage(sprite.Sprite, sprite.Position.X, sprite.Position.Y, sprite.Scale.X, sprite.Scale.Y);
             }
+
         }
     }
 
