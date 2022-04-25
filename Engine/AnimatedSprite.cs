@@ -7,7 +7,7 @@
     {
         public Animation Animation { get; private set; }
         public Bitmap[] Animations { get; private set; }
-        public int AnimationSpeed { get; set; } = 25;
+        public int AnimationSpeed { get; set; } = 250;
 
         public AnimatedSprite(Vector2 position, Vector2 scale, List<string> imageNames, string tag)
             : base(position, scale, tag)

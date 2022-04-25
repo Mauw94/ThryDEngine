@@ -76,12 +76,12 @@ namespace ThryDEngine.Engine
                 try
                 {
                     // Order matters here.
-                    Draw();
                     StartGameTimer();
+                    Draw();
                     _window!.BeginInvoke((MethodInvoker)delegate { _window.Refresh(); });
-                    StopGameTimer();
                     Update();
                     Thread.Sleep(1);
+                    StopGameTimer();
                 }
                 catch
                 {
