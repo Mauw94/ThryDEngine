@@ -2,8 +2,8 @@
 {
     public class ScreenManager
     {
-        readonly List<GameScreen> _screens = new List<GameScreen>();
-        readonly List<GameScreen> _screensToUpdate = new List<GameScreen>();
+        readonly List<GameScreen> _screens = new();
+        readonly List<GameScreen> _screensToUpdate = new();
 
         public ScreenManager()
         {
@@ -23,6 +23,20 @@
                 _screensToUpdate.RemoveAt(_screensToUpdate.Count - 1);
                 screen.Update();
             }
+        }
+
+        public void GetKeyDown(KeyEventArgs e)
+        {
+            foreach (var screen in _screens)
+                if (screen.IsInFocus)
+                    screen.GetKeyDown(e);
+        }
+
+        public void GetKeyUp(KeyEventArgs e)
+        {
+            foreach (var screen in _screens)
+                if (screen.IsInFocus)
+                    screen.GetKeyUp(e);
         }
 
         public void Draw()

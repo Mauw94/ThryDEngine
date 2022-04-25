@@ -16,6 +16,13 @@
             set { _isExiting = value; }
         }
 
+        protected bool _isInFocus = false;
+        public bool IsInFocus
+        {
+            get { return _isInFocus; }
+            set { _isInFocus = value; }
+        }
+
         protected ScreenManager _screenManager;
         public ScreenManager ScreenManager
         {
@@ -34,6 +41,8 @@
             }
         }
         public abstract void Draw();
+        public abstract void GetKeyDown(KeyEventArgs e);
+        public abstract void GetKeyUp(KeyEventArgs e);
         public virtual void ExitScreen()
         {
             _isExiting = true;

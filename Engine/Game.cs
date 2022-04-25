@@ -59,7 +59,6 @@ namespace ThryDEngine.Engine
         }
 
         public abstract void OnLoad();
-        public abstract void Initialize();
         public abstract void Update();
         public abstract void Draw();
         public abstract void GetKeyDown(KeyEventArgs e);
