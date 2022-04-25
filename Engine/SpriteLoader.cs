@@ -1,10 +1,13 @@
 ﻿namespace ThryDEngine.Engine
 {
+    /// <summary>
+    /// Load sprite as a new Bitmap.
+    /// </summary>
     public class SpriteLoader
     {
-        public static Bitmap Load(string directory, int width, int height, string extension = "png")
+        public static Bitmap Load(string spriteName, int width, int height, string extension = "png")
         {
-            Image tmp = Image.FromFile($"Assets/Sprites/{directory}.{extension}");
+            Image tmp = Image.FromFile($"Assets/Sprites/{spriteName}.{extension}");
             return new Bitmap(tmp, width, height);
         }
 

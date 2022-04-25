@@ -1,5 +1,8 @@
 ﻿namespace ThryDEngine.Engine
 {
+    /// <summary>
+    /// Animated sprite base class, inherits from Sprite.
+    /// </summary>
     public class AnimatedSprite : Sprite
     {
         public Animation Animation { get; private set; }

@@ -16,6 +16,7 @@ namespace ThryDEngine.Engine
         public Vector2 CameraPosition { get; set; } = Vector2.Zero();
         public float CameraAngle { get; set; } = 0f;
         public static TimeSpan ElapsedGameTime { get; private set; }
+        public static TimeSpan TotalGameTime => GetTotalElapsedGameTime();
         public Graphics Graphics { get; private set; }
 
         private static List<Sprite> Sprites { get; set; } = new();
@@ -61,13 +62,7 @@ namespace ThryDEngine.Engine
 
         private void Window_KeyDown(object? sender, KeyEventArgs e) => GetKeyDown(e);
         private void Window_KeyUp(object? sender, KeyEventArgs e) => GetKeyUp(e);
-
-        private static TimeSpan GetElapsedGameTime()
-        {
-            if (_gameTime == null) throw new ArgumentNullException($"Gametime can not be null.");
-
-            return _gameTime.Elapsed;
-        }
+        private static TimeSpan GetTotalElapsedGameTime() => _gameTime.Elapsed;
 
         void GameLoop()
         {

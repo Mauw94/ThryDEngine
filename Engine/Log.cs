@@ -1,5 +1,8 @@
 ﻿namespace ThryDEngine.Engine
 {
+    /// <summary>
+    /// Logging.
+    /// </summary>
     public class Log
     {
         public static void Normal(string msg)

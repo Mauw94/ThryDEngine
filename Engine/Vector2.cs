@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ThryDEngine.Engine
+﻿namespace ThryDEngine.Engine
 {
+    /// <summary>
+    /// Vector2 base class.
+    /// </summary>
     public class Vector2
     {
         public float X { get; set; }

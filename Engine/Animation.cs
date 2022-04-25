@@ -1,10 +1,13 @@
 ﻿namespace ThryDEngine.Engine
 {
+    /// <summary>
+    /// Instantiate a new animation for a sprite.
+    /// </summary>
     public class Animation
     {
-        public Bitmap[] Frames { get; set; }
+        public Bitmap[] Frames { get; private set; }
         public int CurrentFrame { get; private set; }
-        public bool PlayedOnce { get; set; }
+        public bool PlayedOnce { get; private set; }
         public int FrameCount => Frames.Length;
 
         private readonly int _threshold;
