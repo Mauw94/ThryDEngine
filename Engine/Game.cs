@@ -18,7 +18,8 @@ namespace ThryDEngine.Engine
         public Color BackgroundColor { get; set; } = Color.White;
         public Vector2 CameraPosition { get; set; } = Vector2.Zero();
         public float CameraAngle { get; set; } = 0f;
-        public Graphics Graphics { get; private set; }
+        public static Graphics Graphics { get; private set; }
+        public static SpriteBatch SpriteBatch { get; private set; }
 
         public static TimeSpan ElapsedGameTime { get; private set; }
         public static TimeSpan TotalGameTime => GetTotalElapsedGameTime();
@@ -117,7 +118,7 @@ namespace ThryDEngine.Engine
             g.RotateTransform(CameraAngle);
 
             foreach (var sprite in Sprites)
-                g.DrawImage(sprite.Image, sprite.Position.X, sprite.Position.Y, sprite.Scale.X, sprite.Scale.Y);
+                SpriteBatch.Draw(sprite.Image, sprite.Position.X, sprite.Position.Y, sprite.Scale.X, sprite.Scale.Y);
         }
     }
 
