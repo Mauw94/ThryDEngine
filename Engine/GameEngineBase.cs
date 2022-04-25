@@ -62,6 +62,7 @@ namespace ThryDEngine.Engine
 
         private void Window_KeyDown(object? sender, KeyEventArgs e) => GetKeyDown(e);
         private void Window_KeyUp(object? sender, KeyEventArgs e) => GetKeyUp(e);
+
         private static TimeSpan GetTotalElapsedGameTime() => _gameTime.Elapsed;
 
         void GameLoop()
@@ -101,7 +102,7 @@ namespace ThryDEngine.Engine
             ElapsedGameTime = _gameTime.Elapsed;
         }
 
-        private void Renderer(object sender, PaintEventArgs e)
+        void Renderer(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
             Graphics = g;
@@ -112,10 +113,7 @@ namespace ThryDEngine.Engine
             g.RotateTransform(CameraAngle);
 
             foreach (var sprite in Sprites)
-            {
                 g.DrawImage(sprite.Image, sprite.Position.X, sprite.Position.Y, sprite.Scale.X, sprite.Scale.Y);
-            }
-
         }
     }
 
