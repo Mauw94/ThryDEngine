@@ -4,8 +4,8 @@ namespace ThryDEngine
 {
     public class DemoGame : GameEngineBase
     {
-        Sprite2D player;
-        Sprite2D player2;
+        Sprite player;
+        Sprite player2;
 
         bool left;
         bool right;
@@ -53,7 +53,7 @@ namespace ThryDEngine
                 for (int j = 0; j < Map.GetLength(0); j++)
                 {
                     if (Map[j, i] == "g")
-                        new Sprite2D(new Vector2(i * 20, j * 20), new Vector2(20, 20), "Stones/Stone-1", "Ground");
+                        new Sprite(new Vector2(i * 20, j * 20), new Vector2(20, 20), "Stones/Stone-1", "Ground");
                 }
             }
         }

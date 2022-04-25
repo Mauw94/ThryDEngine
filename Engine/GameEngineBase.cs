@@ -14,8 +14,7 @@
         public Vector2 CameraPosition = Vector2.Zero();
         public float CameraAngle = 0f;
 
-        private static List<Shape2D> Shapes { get; set; } = new();
-        private static List<Sprite2D> Sprites { get; set; } = new();
+        private static List<Sprite> Sprites { get; set; } = new();
 
         private readonly Vector2 _screenSize = new(512, 512);
         private readonly string _title = "ThryDEngine";
@@ -58,10 +57,8 @@
         public abstract void GetKeyDown(KeyEventArgs e);
         public abstract void GetKeyUp(KeyEventArgs e);
 
-        public static void RegisterShape(Shape2D shape) => Shapes.Add(shape);
-        public static void UnRegisterShape(Shape2D shape) => Shapes.Remove(shape);
-        public static void RegisterSprite(Sprite2D sprite) => Sprites.Add(sprite);
-        public static void UnRegisterSprite(Sprite2D sprite) => Sprites.Remove(sprite);
+        public static void RegisterSprite(Sprite sprite) => Sprites.Add(sprite);
+        public static void UnRegisterSprite(Sprite sprite) => Sprites.Remove(sprite);
 
         void GameLoop()
         {
@@ -94,14 +91,9 @@
             g.TranslateTransform(CameraPosition.X, CameraPosition.Y);
             g.RotateTransform(CameraAngle);
 
-            foreach (var shape in Shapes)
-            {
-                g.FillRectangle(new SolidBrush(Color.Red), shape.Position.X, shape.Position.Y, shape.Scale.X, shape.Scale.Y);
-            }
-
             foreach (var sprite in Sprites)
             {
-                g.DrawImage(sprite.Sprite, sprite.Position.X, sprite.Position.Y, sprite.Scale.X, sprite.Scale.Y);
+                g.DrawImage(sprite.Image, sprite.Position.X, sprite.Position.Y, sprite.Scale.X, sprite.Scale.Y);
             }
 
         }

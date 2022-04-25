@@ -1,27 +1,27 @@
 ﻿namespace ThryDEngine.Engine
 {
-    public class Sprite2D
+    public class Sprite
     {
         public Vector2 Position;
         public Vector2 Scale;
         public string Directory = string.Empty;
         public string Tag = string.Empty;
-        public Bitmap Sprite;
+        public Bitmap Image;
 
-        public Sprite2D(Vector2 position, Vector2 scale, string directory, string tag)
+        public Sprite(Vector2 position, Vector2 scale, string directory, string tag)
         {
             Position = position;
             Scale = scale;
             Directory = directory;
             Tag = tag;
 
-            Sprite = TextureLoader.Load(directory, (int)Scale.X, (int)Scale.Y);
+            Image = TextureLoader.Load(directory, (int)Scale.X, (int)Scale.Y);
 
             Log.Info($"[SPRITE]({Tag}) - has been registered");
             GameEngineBase.RegisterSprite(this);
         }
 
-        public bool IsColliding(Sprite2D a, Sprite2D b)
+        public bool IsColliding(Sprite a, Sprite b)
         {
             if (a.Position.X < b.Position.X + b.Scale.X &&
                 a.Position.X + a.Scale.X > b.Position.X &&
