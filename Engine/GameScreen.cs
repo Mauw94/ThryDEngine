@@ -30,6 +30,13 @@
             set { _screenManager = value; }
         }
 
+        protected ScreenState _screenState;
+        public ScreenState ScreenState
+        {
+            get { return _screenState; }
+            set { _screenState = value; }
+        }
+
         public virtual void OnLoad() { }
         public virtual void Unload() { }
         public virtual void Update()

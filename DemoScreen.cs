@@ -39,12 +39,13 @@ namespace ThryDEngine
             //        if (Map[j, i] == "g")
             //            new Sprite(new Vector2(i * 20, j * 20), new Vector2(20, 20), "Stones/Stone-1", "Ground");
             //    }
-            //}
+            //}            
         }
 
         public override void Update()
         {
             base.Update();
+
             player.Update();
             player2.Update();
 
@@ -54,13 +55,12 @@ namespace ThryDEngine
             if (right) player.Position.X += 1f;
 
             if (player.IsColliding(player, player2))
-            {
                 Log.Warning("Colliding");
-            }
         }
 
         public override void Draw()
         {
+            //Game.Graphics.DrawRectangle(new Pen(new Brush(Color.AliceBlue)));
         }
 
         public override void GetKeyDown(KeyEventArgs e)
@@ -69,6 +69,8 @@ namespace ThryDEngine
             if (e.KeyCode == Keys.S) down = true;
             if (e.KeyCode == Keys.A) left = true;
             if (e.KeyCode == Keys.D) right = true;
+
+            if (e.KeyCode == Keys.Escape) ScreenState = ScreenState.HIDDEN;
         }
 
         public override void GetKeyUp(KeyEventArgs e)

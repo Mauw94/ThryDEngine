@@ -42,7 +42,8 @@
         public void Draw()
         {
             foreach (var screen in _screens)
-                screen.Draw();
+                if (screen.ScreenState != ScreenState.HIDDEN)
+                    screen.Draw();
         }
 
         public void AddScreen(GameScreen screen)
