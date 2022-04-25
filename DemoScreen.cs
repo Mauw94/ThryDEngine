@@ -12,7 +12,17 @@ namespace ThryDEngine
         bool up;
         bool down;
 
-        public override void LoadContent()
+        string[,] Map =
+{
+            {".",".",".",".",".",".","." },
+            {".",".","g","g",".",".","." },
+            {"g",".","g",".",".",".","." },
+            {".",".","g",".",".",".","." },
+            {"g","g","g","g","g","g","." },
+            {".",".",".",".",".",".","." },
+        };
+
+        public override void OnLoad()
         {
             player = new(new Vector2(20, 20), new Vector2(20, 20), "player-explore", "player");
 
@@ -21,6 +31,15 @@ namespace ThryDEngine
                     "earth_planet",
                     "rocky_planet",
                     "gas_planet"}, "player");
+
+            //for (int i = 0; i < Map.GetLength(1); i++)
+            //{
+            //    for (int j = 0; j < Map.GetLength(0); j++)
+            //    {
+            //        if (Map[j, i] == "g")
+            //            new Sprite(new Vector2(i * 20, j * 20), new Vector2(20, 20), "Stones/Stone-1", "Ground");
+            //    }
+            //}
         }
 
         public override void Update()

@@ -48,7 +48,7 @@
         public void AddScreen(GameScreen screen)
         {
             screen.ScreenManager = this;
-            screen.LoadContent();
+            screen.OnLoad();
 
             _screens.Add(screen);
         }
@@ -58,7 +58,7 @@
             _screens.Remove(screen);
             _screensToUpdate.Remove(screen);
 
-            screen.UnloadContent();
+            screen.Unload();
         }
 
         public GameScreen[] GetScreens() => _screens.ToArray();

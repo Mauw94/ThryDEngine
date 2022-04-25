@@ -30,8 +30,8 @@
             set { _screenManager = value; }
         }
 
-        public virtual void LoadContent() { }
-        public virtual void UnloadContent() { }
+        public virtual void OnLoad() { }
+        public virtual void Unload() { }
         public virtual void Update()
         {
             if (_isExiting)
