@@ -18,6 +18,7 @@ namespace ThryDEngine.Engine
         public Color BackgroundColor { get; set; } = Color.White;
         public Vector2 CameraPosition { get; set; } = Vector2.Zero();
         public float CameraAngle { get; set; } = 0f;
+        public ScreenManager ScreenManager { get; private set; }
         public static Graphics Graphics { get; private set; }
         public static SpriteBatch SpriteBatch { get; private set; }
 
@@ -51,6 +52,8 @@ namespace ThryDEngine.Engine
 
             _gameTime = new();
             _gameTime.Start();
+
+            ScreenManager = new();
 
             Application.Run(_window);
         }

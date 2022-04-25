@@ -4,9 +4,6 @@ namespace ThryDEngine
 {
     public class DemoGame : Game
     {
-        Sprite player;
-        AnimatedSprite player2;
-
         bool left;
         bool right;
         bool up;
@@ -30,10 +27,12 @@ namespace ThryDEngine
         public DemoGame()
             : base(new Vector2(1024, 760), "Demo")
         {
+            ScreenManager.AddScreen(new DemoScreen());
         }
 
         public override void Draw()
         {
+            ScreenManager.Draw();
         }
 
         public override void Initialize()
@@ -45,13 +44,7 @@ namespace ThryDEngine
             BackgroundColor = Color.Beige;
             CameraPosition.X = 100;
 
-            player = new(new Vector2(20, 20), new Vector2(20, 20), "player-explore", "player");
-
-            player2 = new(new Vector2(100, 100), new Vector2(20, 20),
-                new List<string>(){
-                    "earth_planet",
-                    "rocky_planet",
-                    "gas_planet"}, "player");
+            ScreenManager.AddScreen(new DemoScreen());
 
             //for (int i = 0; i < Map.GetLength(1); i++)
             //{
@@ -66,19 +59,17 @@ namespace ThryDEngine
         int animationPlayed = 0;
         public override void Update()
         {
-            if (up) player.Position.Y -= 1f;
-            if (down) player.Position.Y += 1f;
-            if (left) player.Position.X -= 1f;
-            if (right) player.Position.X += 1f;
+            //if (up) player.Position.Y -= 1f;
+            //if (down) player.Position.Y += 1f;
+            //if (left) player.Position.X -= 1f;
+            //if (right) player.Position.X += 1f;
 
-            if (player.IsColliding(player, player2))
-            {
-                Log.Warning("Colliding");
-            }
+            //if (player.IsColliding(player, player2))
+            //{
+            //    Log.Warning("Colliding");
+            //}
 
-
-            player.Update();
-            player2.Update();
+            ScreenManager.Update();
 
             // check collision with walls.
 
