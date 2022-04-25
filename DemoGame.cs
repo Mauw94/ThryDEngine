@@ -79,7 +79,6 @@ namespace ThryDEngine
             player.Update();
             player2.Update();
 
-            Log.Info($"Elapsed gametime: {GameEngineBase.ElapsedGameTime}");
             // check collision with walls.
 
             //CameraPosition.X += 0.5f;

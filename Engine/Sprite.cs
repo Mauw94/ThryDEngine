@@ -1,6 +1,6 @@
 ﻿namespace ThryDEngine.Engine
 {
-    public class Sprite : IComponent
+    public class Sprite : Component
     {
         public Vector2 Position;
         public Vector2 Scale;
@@ -15,7 +15,7 @@
             Directory = directory;
             Tag = tag;
 
-            Image = TextureLoader.Load(directory, (int)Scale.X, (int)Scale.Y);
+            Image = SpriteLoader.Load(directory, (int)Scale.X, (int)Scale.Y);
 
             Log.Info($"[SPRITE]({Tag}) - has been registered");
             GameEngineBase.RegisterSprite(this);
@@ -48,7 +48,7 @@
             GameEngineBase.UnRegisterSprite(this);
         }
 
-        public void Update()
+        public override void Update()
         {
         }
     }

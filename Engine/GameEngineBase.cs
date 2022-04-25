@@ -16,6 +16,7 @@ namespace ThryDEngine.Engine
         public Vector2 CameraPosition { get; set; } = Vector2.Zero();
         public float CameraAngle { get; set; } = 0f;
         public static TimeSpan ElapsedGameTime { get; private set; }
+        public Graphics Graphics { get; private set; }
 
         private static List<Sprite> Sprites { get; set; } = new();
 
@@ -38,6 +39,7 @@ namespace ThryDEngine.Engine
             _window.Paint += Renderer!;
             _window.KeyDown += Window_KeyDown;
             _window.KeyUp += Window_KeyUp;
+
             _gameLoopThread = new(GameLoop);
             _gameLoopThread.Start();
 
@@ -107,6 +109,8 @@ namespace ThryDEngine.Engine
         private void Renderer(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
+            Graphics = g;
+
             g.Clear(BackgroundColor);
 
             g.TranslateTransform(CameraPosition.X, CameraPosition.Y);
