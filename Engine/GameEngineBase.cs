@@ -1,4 +1,6 @@
-﻿namespace ThryDEngine.Engine
+﻿using System.Diagnostics;
+
+namespace ThryDEngine.Engine
 {
     class Canvas : Form
     {
@@ -11,11 +13,13 @@
     public abstract class GameEngineBase
     {
         public Color BackgroundColor { get; set; } = Color.White;
-        public Vector2 CameraPosition = Vector2.Zero();
-        public float CameraAngle = 0f;
+        public Vector2 CameraPosition { get; set; } = Vector2.Zero();
+        public float CameraAngle { get; set; } = 0f;
+        public static TimeSpan ElapsedGameTime { get; private set; }
 
         private static List<Sprite> Sprites { get; set; } = new();
 
+        private static Stopwatch _gameTime;
         private readonly Vector2 _screenSize = new(512, 512);
         private readonly string _title = "ThryDEngine";
         private readonly Canvas? _window = null;
@@ -37,17 +41,10 @@
             _gameLoopThread = new(GameLoop);
             _gameLoopThread.Start();
 
+            _gameTime = new();
+            _gameTime.Start();
+
             Application.Run(_window);
-        }
-
-        private void Window_KeyDown(object? sender, KeyEventArgs e)
-        {
-            GetKeyDown(e);
-        }
-
-        private void Window_KeyUp(object? sender, KeyEventArgs e)
-        {
-            GetKeyUp(e);
         }
 
         public abstract void OnLoad();
@@ -59,6 +56,16 @@
 
         public static void RegisterSprite(Sprite sprite) => Sprites.Add(sprite);
         public static void UnRegisterSprite(Sprite sprite) => Sprites.Remove(sprite);
+
+        private void Window_KeyDown(object? sender, KeyEventArgs e) => GetKeyDown(e);
+        private void Window_KeyUp(object? sender, KeyEventArgs e) => GetKeyUp(e);
+
+        private static TimeSpan GetElapsedGameTime()
+        {
+            if (_gameTime == null) throw new ArgumentNullException($"Gametime can not be null.");
+
+            return _gameTime.Elapsed;
+        }
 
         void GameLoop()
         {
@@ -72,7 +79,9 @@
                 {
                     // Order matters here.
                     Draw();
+                    StartGameTimer();
                     _window!.BeginInvoke((MethodInvoker)delegate { _window.Refresh(); });
+                    StopGameTimer();
                     Update();
                     Thread.Sleep(1);
                 }
@@ -81,6 +90,18 @@
                     Log.Error("game window has not been found. waiting..");
                 }
             }
+        }
+
+        static void StartGameTimer()
+        {
+            _gameTime = new();
+            _gameTime.Start();
+        }
+
+        static void StopGameTimer()
+        {
+            _gameTime.Stop();
+            ElapsedGameTime = _gameTime.Elapsed;
         }
 
         private void Renderer(object sender, PaintEventArgs e)

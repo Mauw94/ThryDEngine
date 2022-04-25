@@ -1,6 +1,6 @@
 ﻿namespace ThryDEngine.Engine
 {
-    public class Sprite
+    public class Sprite : IComponent
     {
         public Vector2 Position;
         public Vector2 Scale;
@@ -21,6 +21,16 @@
             GameEngineBase.RegisterSprite(this);
         }
 
+        public Sprite(Vector2 position, Vector2 scale, string tag)
+        {
+            Position = position;
+            Scale = scale;
+            Tag = tag;
+
+            Log.Info($"[SPRITE]({Tag}) - has been registered (with no texture)");
+            GameEngineBase.RegisterSprite(this);
+        }
+
         public bool IsColliding(Sprite a, Sprite b)
         {
             if (a.Position.X < b.Position.X + b.Scale.X &&
@@ -36,6 +46,10 @@
         {
             Log.Info($"[SPRITE]({Tag}) - has been destroyed");
             GameEngineBase.UnRegisterSprite(this);
+        }
+
+        public void Update()
+        {
         }
     }
 }
