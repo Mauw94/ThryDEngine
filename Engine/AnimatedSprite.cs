@@ -18,7 +18,7 @@
 
             Log.Info($"[ANIMATED_SPRITE]({Tag}) - has been registered");
 
-            GameEngineBase.RegisterSprite(this);
+            Game.RegisterSprite(this);
         }
 
         public override void Update()

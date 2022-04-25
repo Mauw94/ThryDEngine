@@ -2,7 +2,7 @@
 
 namespace ThryDEngine
 {
-    public class DemoGame : GameEngineBase
+    public class DemoGame : Game
     {
         Sprite player;
         AnimatedSprite player2;

@@ -21,7 +21,7 @@
 
         public void Update()
         {
-            _timer += (float)GameEngineBase.ElapsedGameTime.TotalMilliseconds;
+            _timer += (float)Game.ElapsedGameTime.TotalMilliseconds;
 
             if (CurrentFrame > FrameCount)
                 CurrentFrame = 0;

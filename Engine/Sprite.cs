@@ -21,7 +21,7 @@
             Image = SpriteLoader.Load(spriteName, (int)Scale.X, (int)Scale.Y);
 
             Log.Info($"[SPRITE]({Tag}) - has been registered");
-            GameEngineBase.RegisterSprite(this);
+            Game.RegisterSprite(this);
         }
 
         public Sprite(Vector2 position, Vector2 scale, string tag)
@@ -31,7 +31,7 @@
             Tag = tag;
 
             Log.Info($"[SPRITE]({Tag}) - has been registered (with no texture)");
-            GameEngineBase.RegisterSprite(this);
+            Game.RegisterSprite(this);
         }
 
         public void OverrideSpriteLoad(string spriteName, string extension)
@@ -53,7 +53,7 @@
         public void DestroySelf()
         {
             Log.Info($"[SPRITE]({Tag}) - has been destroyed");
-            GameEngineBase.UnRegisterSprite(this);
+            Game.UnRegisterSprite(this);
         }
 
         public override void Update()

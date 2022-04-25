@@ -10,24 +10,28 @@ namespace ThryDEngine.Engine
         }
     }
 
-    public abstract class GameEngineBase
+    /// <summary>
+    /// The main loop for the game engine.
+    /// </summary>
+    public abstract class Game
     {
         public Color BackgroundColor { get; set; } = Color.White;
         public Vector2 CameraPosition { get; set; } = Vector2.Zero();
         public float CameraAngle { get; set; } = 0f;
-        public static TimeSpan ElapsedGameTime { get; private set; }
-        public static TimeSpan TotalGameTime => GetTotalElapsedGameTime();
         public Graphics Graphics { get; private set; }
 
-        private static List<Sprite> Sprites { get; set; } = new();
+        public static TimeSpan ElapsedGameTime { get; private set; }
+        public static TimeSpan TotalGameTime => GetTotalElapsedGameTime();
 
+        private static List<Sprite> Sprites { get; set; } = new();
         private static Stopwatch _gameTime;
+
         private readonly Vector2 _screenSize = new(512, 512);
         private readonly string _title = "ThryDEngine";
         private readonly Canvas? _window = null;
         private readonly Thread? _gameLoopThread = null;
 
-        public GameEngineBase(Vector2 screenSize, string title)
+        public Game(Vector2 screenSize, string title)
         {
             Log.Info("Game is starting..");
 
