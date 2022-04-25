@@ -13,8 +13,6 @@
             : base(position, scale, tag)
         {
             Animations = SpriteLoader.Load(imageNames, (int)Scale.X, (int)Scale.Y);
-
-            // Need to set a starting image.
             Image = Animations.First();
             Animation = new(AnimationSpeed, Animations.ToArray());
 

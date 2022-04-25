@@ -10,13 +10,13 @@
         public bool PlayedOnce { get; private set; }
         public int FrameCount => Frames.Length;
 
-        private readonly int _threshold;
+        private readonly int _animationSpeed;
         private float _timer = 0f;
 
-        public Animation(int threshold, Bitmap[] frames)
+        public Animation(int animationSpeed, Bitmap[] frames)
         {
-            _threshold = threshold;
             Frames = frames;
+            _animationSpeed = animationSpeed;
         }
 
         public void Update()
@@ -26,7 +26,7 @@
             if (CurrentFrame > FrameCount)
                 CurrentFrame = 0;
 
-            if (!(_timer > _threshold)) return;
+            if (!(_timer > _animationSpeed)) return;
             _timer = 0f;
             CurrentFrame++;
             PlayedOnce = false;

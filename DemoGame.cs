@@ -63,17 +63,18 @@ namespace ThryDEngine
             //}
         }
 
+        int animationPlayed = 0;
         public override void Update()
         {
-            //if (up) player.Position.Y -= 1f;
-            //if (down) player.Position.Y += 1f;
-            //if (left) player.Position.X -= 1f;
-            //if (right) player.Position.X += 1f;
+            if (up) player.Position.Y -= 1f;
+            if (down) player.Position.Y += 1f;
+            if (left) player.Position.X -= 1f;
+            if (right) player.Position.X += 1f;
 
-            //if (player.IsColliding(player, player2))
-            //{
-            //    Log.Warning("Colliding");
-            //}
+            if (player.IsColliding(player, player2))
+            {
+                Log.Warning("Colliding");
+            }
 
 
             player.Update();
