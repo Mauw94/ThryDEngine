@@ -1,6 +1,6 @@
 ﻿namespace ThryDEngine.Engine
 {
-    public abstract class GameScreen
+    public abstract class GameScreen : IBaseGame
     {
         protected bool _isPopUp = false;
         public bool IsPopUp

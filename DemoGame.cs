@@ -29,6 +29,11 @@ namespace ThryDEngine
             ScreenManager.AddScreen(mainScreen);
         }
 
+        public override void Unload()
+        {
+            throw new NotImplementedException();
+        }
+
         public override void Update()
         {
             ScreenManager.Update();

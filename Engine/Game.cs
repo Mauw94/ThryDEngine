@@ -13,7 +13,7 @@ namespace ThryDEngine.Engine
     /// <summary>
     /// The main loop for the game engine.
     /// </summary>
-    public abstract class Game
+    public abstract class Game : IBaseGame
     {
         public Color BackgroundColor { get; set; } = Color.White;
         public Vector2 CameraPosition { get; set; } = Vector2.Zero();
@@ -59,6 +59,7 @@ namespace ThryDEngine.Engine
         }
 
         public abstract void OnLoad();
+        public abstract void Unload();
         public abstract void Update();
         public abstract void Draw();
         public abstract void GetKeyDown(KeyEventArgs e);
