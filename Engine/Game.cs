@@ -24,8 +24,8 @@ namespace ThryDEngine.Engine
 
         public static TimeSpan ElapsedGameTime { get; private set; }
         public static TimeSpan TotalGameTime => GetTotalElapsedGameTime();
+        public static List<Sprite> Sprites { get; set; } = new();
 
-        private static List<Sprite> Sprites { get; set; } = new();
         private static Stopwatch _gameTime;
 
         private readonly Vector2 _screenSize = new(512, 512);
@@ -121,7 +121,8 @@ namespace ThryDEngine.Engine
             g.RotateTransform(CameraAngle);
 
             foreach (var sprite in Sprites)
-                SpriteBatch.Draw(sprite.Image, sprite.Position.X, sprite.Position.Y, sprite.Scale.X, sprite.Scale.Y);
+                if (!sprite.IsReference)
+                    SpriteBatch.Draw(sprite.Image, sprite.Position.X, sprite.Position.Y, sprite.Scale.X, sprite.Scale.Y);
         }
     }
 

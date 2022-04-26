@@ -12,6 +12,8 @@ namespace ThryDEngine
         bool up;
         bool down;
 
+        Vector2 lastPos = Vector2.Zero();
+
         string[,] Map =
 {
             {".",".",".",".",".",".","." },
@@ -25,21 +27,21 @@ namespace ThryDEngine
         public override void OnLoad()
         {
             player = new(new Vector2(20, 20), new Vector2(20, 20), "player-explore", "player");
-
             player2 = new(new Vector2(100, 100), new Vector2(20, 20),
                 new List<string>(){
                     "earth_planet",
                     "rocky_planet",
                     "gas_planet"}, "player");
+            Sprite wallsRef = new("Stones/Stone-1");
 
-            //for (int i = 0; i < Map.GetLength(1); i++)
-            //{
-            //    for (int j = 0; j < Map.GetLength(0); j++)
-            //    {
-            //        if (Map[j, i] == "g")
-            //            new Sprite(new Vector2(i * 20, j * 20), new Vector2(20, 20), "Stones/Stone-1", "Ground");
-            //    }
-            //}            
+            for (int i = 0; i < Map.GetLength(1); i++)
+            {
+                for (int j = 0; j < Map.GetLength(0); j++)
+                {
+                    if (Map[j, i] == "g")
+                        new Sprite(new Vector2(i * 20, j * 20), new Vector2(20, 20), wallsRef, "Ground");
+                }
+            }
         }
 
         public override void Update()
@@ -56,6 +58,18 @@ namespace ThryDEngine
 
             if (player.IsColliding(player, player2))
                 Log.Warning("Colliding");
+
+            if (player.IsColliding("Ground"))
+            {
+                Log.Warning("Colliding");
+                player.Position.X = lastPos.X;
+                player.Position.Y = lastPos.Y;
+            }
+            else
+            {
+                lastPos.X = player.Position.X;
+                lastPos.Y = player.Position.Y;
+            }
         }
 
         public override void Draw()

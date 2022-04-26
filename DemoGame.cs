@@ -4,6 +4,8 @@ namespace ThryDEngine
 {
     public class DemoGame : Game
     {
+        GameScreen _mainScreen;
+
         /// <summary>
         /// Debug class.
         /// </summary>
@@ -22,11 +24,11 @@ namespace ThryDEngine
             BackgroundColor = Color.Beige;
             CameraPosition.X = 100;
 
-            var mainScreen = new DemoScreen
+            _mainScreen = new DemoScreen
             {
                 IsInFocus = true
             };
-            ScreenManager.AddScreen(mainScreen);
+            ScreenManager.AddScreen(_mainScreen);
         }
 
         public override void Unload()

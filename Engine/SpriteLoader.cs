@@ -11,6 +11,12 @@
             return new Bitmap(tmp, width, height);
         }
 
+        public static Bitmap Load(string spriteName, string extension = "png")
+        {
+            Image tmp = Image.FromFile($"Assets/Sprites/{spriteName}.{extension}");
+            return new Bitmap(tmp);
+        }
+
         public static Bitmap[] Load(List<string> spriteNames, int width, int height, string extension = "png")
         {
             Bitmap[] bitmap = new Bitmap[spriteNames.Count];

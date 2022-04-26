@@ -10,6 +10,7 @@
         public string SpriteName = string.Empty;
         public string Tag = string.Empty;
         public Bitmap Image;
+        public bool IsReference = false;
 
         public Sprite(Vector2 position, Vector2 scale, string spriteName, string tag)
         {
@@ -19,6 +20,30 @@
             Tag = tag;
 
             Image = SpriteLoader.Load(spriteName, (int)Scale.X, (int)Scale.Y);
+
+            Log.Info($"[SPRITE]({Tag}) - has been registered");
+            Game.RegisterSprite(this);
+        }
+
+        public Sprite(string spriteName)
+        {
+            IsReference = true;
+            SpriteName = spriteName;
+
+            Image = SpriteLoader.Load(spriteName);
+
+            Log.Info($"[SPRITE]({Tag}) - has been registered");
+            Game.RegisterSprite(this);
+        }
+
+        public Sprite(Vector2 position, Vector2 scale, Sprite reference, string tag)
+        {
+            Position = position;
+            Scale = scale;
+            SpriteName = reference.SpriteName;
+            Tag = tag;
+
+            Image = reference.Image;
 
             Log.Info($"[SPRITE]({Tag}) - has been registered");
             Game.RegisterSprite(this);
@@ -47,6 +72,22 @@
                 a.Position.Y + a.Scale.Y > b.Position.Y)
                 return true;
 
+            return false;
+        }
+
+        public bool IsColliding(string tag)
+        {
+            foreach (Sprite b in Game.Sprites)
+            {
+                if (b.Tag == tag)
+                {
+                    if (Position.X < b.Position.X + b.Scale.X &&
+                        Position.X + Scale.X > b.Position.X &&
+                        Position.Y < b.Position.Y + b.Scale.Y &&
+                        Position.Y + Scale.Y > b.Position.Y)
+                        return true;
+                }
+            }
             return false;
         }
 
