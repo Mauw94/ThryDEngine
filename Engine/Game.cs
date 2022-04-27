@@ -20,7 +20,6 @@ namespace ThryDEngine.Engine
         public float CameraAngle { get; set; } = 0f;
         public ScreenManager ScreenManager { get; private set; }
         public static Graphics Graphics { get; private set; }
-        public static SpriteBatch SpriteBatch { get; private set; }
 
         public static TimeSpan ElapsedGameTime { get; private set; }
         public static TimeSpan TotalGameTime => GetTotalElapsedGameTime();
@@ -119,9 +118,6 @@ namespace ThryDEngine.Engine
             Graphics g = e.Graphics;
             Graphics = g;
 
-            //if (!SpriteBatch.IsInitialized)
-                SpriteBatch = new(Graphics, CameraPosition, CameraAngle);
-
             g.Clear(BackgroundColor);
 
             g.TranslateTransform(CameraPosition.X, CameraPosition.Y);
@@ -129,7 +125,7 @@ namespace ThryDEngine.Engine
 
             foreach (var sprite in Sprites)
                 if (!sprite.IsReference)
-                    SpriteBatch.Draw(sprite.Image, sprite.Position.X, sprite.Position.Y, sprite.Scale.X, sprite.Scale.Y);
+                    g.DrawImage(sprite.Image, sprite.Position.X, sprite.Position.Y, sprite.Scale.X, sprite.Scale.Y);
         }
     }
 

@@ -73,7 +73,7 @@ namespace ThryDEngine
                 lastPos.Y = player.Position.Y;
             }
 
-            //Game.CameraPosition.X += 1f;
+            Game.CameraPosition.X += 1f;
         }
 
         public override void Draw()

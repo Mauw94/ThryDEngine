@@ -99,9 +99,6 @@
 
         public override void Update()
         {
-            if (Game.SpriteBatch == null) return;
-            Game.SpriteBatch.MoveCamera(1f, 0f);
-            Game.SpriteBatch.Rotate(2f);
         }
 
         public override void Draw()
