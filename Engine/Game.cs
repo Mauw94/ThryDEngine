@@ -26,6 +26,8 @@ namespace ThryDEngine.Engine
         public static TimeSpan TotalGameTime => GetTotalElapsedGameTime();
         public static List<Sprite> Sprites { get; set; } = new();
 
+        public Game Engine { get; private set; }
+
         private static Stopwatch _gameTime;
 
         private readonly Vector2 _screenSize = new(512, 512);
@@ -54,6 +56,8 @@ namespace ThryDEngine.Engine
             _gameTime.Start();
 
             ScreenManager = new();
+
+            Engine = this;
 
             Application.Run(_window);
         }
@@ -114,6 +118,9 @@ namespace ThryDEngine.Engine
         {
             Graphics g = e.Graphics;
             Graphics = g;
+
+            //if (!SpriteBatch.IsInitialized)
+                SpriteBatch = new(Graphics, CameraPosition, CameraAngle);
 
             g.Clear(BackgroundColor);
 

@@ -37,6 +37,13 @@
             set { _screenState = value; }
         }
 
+        protected Game _game;
+        public Game Game
+        {
+            get { return _game; }
+            set { _game = value; }
+        }
+
         public virtual void OnLoad() { }
         public virtual void Unload() { }
         public virtual void Update()

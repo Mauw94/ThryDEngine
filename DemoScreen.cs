@@ -27,11 +27,13 @@ namespace ThryDEngine
         public override void OnLoad()
         {
             player = new(new Vector2(20, 20), new Vector2(20, 20), "player-explore", "player");
+            
             player2 = new(new Vector2(100, 100), new Vector2(20, 20),
                 new List<string>(){
                     "earth_planet",
                     "rocky_planet",
                     "gas_planet"}, "player");
+
             Sprite wallsRef = new("Stones/Stone-1");
 
             for (int i = 0; i < Map.GetLength(1); i++)
@@ -70,6 +72,8 @@ namespace ThryDEngine
                 lastPos.X = player.Position.X;
                 lastPos.Y = player.Position.Y;
             }
+
+            //Game.CameraPosition.X += 1f;
         }
 
         public override void Draw()

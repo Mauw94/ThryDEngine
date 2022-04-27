@@ -26,7 +26,8 @@ namespace ThryDEngine
 
             _mainScreen = new DemoScreen
             {
-                IsInFocus = true
+                IsInFocus = true,
+                Game = Engine
             };
             ScreenManager.AddScreen(_mainScreen);
         }
