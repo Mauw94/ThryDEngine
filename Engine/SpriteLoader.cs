@@ -28,5 +28,17 @@
             }
             return bitmap;
         }
+
+        public static Bitmap[] Load(List<string> spriteNames, string extension = "png")
+        {
+            Bitmap[] bitmap = new Bitmap[spriteNames.Count];
+
+            for (int i = 0; i < spriteNames.Count; i++)
+            {
+                var image = Image.FromFile($"Assets/Sprites/{spriteNames[i]}.{extension}");
+                bitmap[i] = new Bitmap(image);
+            }
+            return bitmap;
+        }
     }
 }

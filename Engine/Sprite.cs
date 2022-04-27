@@ -32,6 +32,8 @@
 
             Image = SpriteLoader.Load(spriteName);
 
+            Tag = "ReferenceObj";
+
             Log.Info($"[SPRITE]({Tag}) - has been registered");
             Game.RegisterSprite(this);
         }
