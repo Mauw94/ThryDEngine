@@ -22,7 +22,8 @@ namespace ThryDEngine
         public override void OnLoad()
         {
             BackgroundColor = Color.Beige;
-
+            CameraPosition.X = 100;
+            
             _mainScreen = new DemoScreen
             {
                 IsInFocus = true,
