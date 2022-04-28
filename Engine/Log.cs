@@ -10,6 +10,7 @@
             var message = $"[MSG] - {msg}";
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine(message);
+            Console.ForegroundColor = ConsoleColor.White;
 
             WriteToFile(message);
         }
@@ -19,6 +20,7 @@
             var message = $"[INFO] - {msg}";
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(message);
+            Console.ForegroundColor = ConsoleColor.White;
 
             WriteToFile(message);
         }
@@ -28,6 +30,7 @@
             var message = $"[WARNING] - {msg}";
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(message);
+            Console.ForegroundColor = ConsoleColor.White;
 
             WriteToFile(message);
         }
@@ -37,6 +40,7 @@
             var message = $"[ERROR] - {msg}";
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(message);
+            Console.ForegroundColor = ConsoleColor.White;
 
             WriteToFile(message);
         }
